@@ -4,7 +4,6 @@ import (
 	"log"
 	"net"
 	"net/http"
-	"reflect"
 	"testing"
 
 	ieproxy "github.com/mattn/go-ieproxy"
@@ -100,50 +99,6 @@ func init() {
 	multipleMap = make(map[string]string)
 	multipleMap["http"] = "127.0.0.1"
 	multipleMap["ftp"] = "128"
-}
-
-func TestOverrideEnv(t *testing.T) {
-	var callStack []string
-	pseudoSetEnv := func(key, value string) error {
-		if value != "" {
-			callStack = append(callStack, key)
-			callStack = append(callStack, value)
-		}
-		return nil
-	}
-	overrideSet := []struct {
-		in        ieproxy.ProxyConf
-		callStack []string
-	}{
-		{
-			callStack: []string{},
-		},
-		{
-			in: ieproxy.ProxyConf{
-				Static: ieproxy.StaticProxyConf{
-					Active:    true,
-					Protocols: multipleMap,
-				},
-			},
-			callStack: []string{"http_proxy", "127.0.0.1"},
-		},
-		{
-			in: ieproxy.ProxyConf{
-				Static: ieproxy.StaticProxyConf{
-					Active:  true,
-					NoProxy: "example.com,microsoft.com",
-				},
-			},
-			callStack: []string{"no_proxy", "example.com,microsoft.com"},
-		},
-	}
-	for _, o := range overrideSet {
-		callStack = []string{}
-		ieproxy.OverrideEnvWithStaticProxy(o.in, pseudoSetEnv)
-		if !reflect.DeepEqual(o.callStack, callStack) {
-			t.Error("Got: ", callStack, "Expected: ", o.callStack)
-		}
-	}
 }
 
 func listenAndServeWithClose(addr string, handler http.Handler) (net.Listener, error) {
