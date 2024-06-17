@@ -23,8 +23,6 @@
     "https://bcr.bazel.build/modules/gazelle/0.31.0/source.json": "9cb6e8bf6b062ce3e6cba16f4e448e1c34257dbee70973d4f9f101e7ca312676",
     "https://bcr.bazel.build/modules/googletest/1.11.0/MODULE.bazel": "3a83f095183f66345ca86aa13c58b59f9f94a2f81999c093d4eeaa2d262d12f4",
     "https://bcr.bazel.build/modules/googletest/1.11.0/source.json": "c73d9ef4268c91bd0c1cd88f1f9dfa08e814b1dbe89b5f594a9f08ba0244d206",
-    "https://bcr.bazel.build/modules/hermetic_cc_toolchain/3.1.0/MODULE.bazel": "ea4b3a25a9417a7db57a8a2f9ebdee91d679823c6274b482b817ed128d81c594",
-    "https://bcr.bazel.build/modules/hermetic_cc_toolchain/3.1.0/source.json": "9d1df0459caefdf41052d360469922a73e219f67c8ce4da0628cc604469822b9",
     "https://bcr.bazel.build/modules/platforms/0.0.4/MODULE.bazel": "9b328e31ee156f53f3c416a64f8491f7eb731742655a47c9eec4703a71644aee",
     "https://bcr.bazel.build/modules/platforms/0.0.5/MODULE.bazel": "5733b54ea419d5eaf7997054bb55f6a1d0b5ff8aedf0176fef9eea44f3acda37",
     "https://bcr.bazel.build/modules/platforms/0.0.6/MODULE.bazel": "ad6eeef431dc52aefd2d77ed20a4b353f8ebf0f4ecdd26a807d2da5aa8cd0615",
@@ -104,12 +102,22 @@
     },
     "@@hermetic_cc_toolchain~//toolchain:ext.bzl%toolchains": {
       "general": {
-        "bzlTransitiveDigest": "L0EDVXQ1bqh5CxjodeVieW+SjWsjwxFXYEKhUNgMY50=",
-        "usagesDigest": "tVFzLxgLn+2YquJT+f//4qXMWhsFLeIKdV13kV+Vy4k=",
+        "bzlTransitiveDigest": "hwVMiMPHAdjp6leG9cGyUlXRtF2VEuZxHT3uT7JMtB0=",
+        "usagesDigest": "cbTTkgIC2fUVkVC82P2faCHBNjiUUq1uqudofbPnYjs=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
         "generatedRepoSpecs": {
+          "macos_sdk_14.2": {
+            "bzlFile": "@@hermetic_cc_toolchain~//toolchain:defs.bzl",
+            "ruleClassName": "macos_sdk_repository",
+            "attributes": {
+              "urls": [
+                "https://github.com/hexops/xcode-frameworks/archive/122b43323db27b2082a2d44ed2121de21c9ccf75.zip"
+              ],
+              "sha256": "e774c140fe476e7a030aefb6f782e58ed79a18d0223bb88fee6a89d6d6cf8d30"
+            }
+          },
           "zig_sdk": {
             "bzlFile": "@@hermetic_cc_toolchain~//toolchain:defs.bzl",
             "ruleClassName": "zig_repository",
@@ -133,7 +141,10 @@
                 "macos-aarch64": "tar.xz",
                 "macos-x86_64": "tar.xz",
                 "windows-x86_64": "zip"
-              }
+              },
+              "macos_sdk_versions": [
+                "14.2"
+              ]
             }
           }
         },

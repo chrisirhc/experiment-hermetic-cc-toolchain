@@ -1,4 +1,5 @@
 bazel_dep(name = "hermetic_cc_toolchain", version = "3.1.0")
+local_path_override(module_name = "hermetic_cc_toolchain", path = "/Users/chris/code/hermetic_cc_toolchain")
 
 toolchains = use_extension("@hermetic_cc_toolchain//toolchain:ext.bzl", "toolchains")
 use_repo(toolchains, "zig_sdk")
@@ -9,6 +10,6 @@ bazel_dep(name = "gazelle", version = "0.31.0", repo_name = "bazel_gazelle")
 register_toolchains(
     "@zig_sdk//toolchain:linux_amd64_gnu.2.31",
     "@zig_sdk//toolchain:linux_arm64_gnu.2.31",
-    "@zig_sdk//toolchain:darwin_arm64",
-    "@zig_sdk//toolchain:darwin_amd64",
+    "@zig_sdk//toolchain:darwin_amd64_sdk.14.2",
+    "@zig_sdk//toolchain:darwin_arm64_sdk.14.2",
 )
