@@ -1,5 +1,5 @@
 bazel_dep(name = "hermetic_cc_toolchain", version = "3.1.0")
-local_path_override(module_name = "hermetic_cc_toolchain", path = "/Users/chris/code/hermetic_cc_toolchain")
+local_path_override(module_name = "hermetic_cc_toolchain", path = "../hermetic_cc_toolchain")
 
 toolchains = use_extension("@hermetic_cc_toolchain//toolchain:ext.bzl", "toolchains")
 use_repo(toolchains, "zig_sdk")
